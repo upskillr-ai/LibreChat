@@ -1,0 +1,85 @@
+version: 1.0.5
+cache: true
+# fileStrategy: "firebase"  # If using Firebase CDN
+fileConfig:
+  endpoints:
+    assistants:
+      fileLimit: 5
+      # Maximum size for an individual file in MB
+      fileSizeLimit: 10
+      # Maximum total size for all files in a single request in MB
+      totalSizeLimit: 50
+      # In case you wish to limit certain filetypes
+      # supportedMimeTypes:
+      #   - "image/.*"
+      #   - "application/pdf"
+    openAI:
+    # Disables file uploading to the OpenAI endpoint
+      disabled: false
+    default:
+      totalSizeLimit: 20
+    # Example for custom endpoints
+    # YourCustomEndpointName:
+    #   fileLimit: 2
+    #   fileSizeLimit: 5
+  # Global server file size limit in MB
+  serverFileSizeLimit: 100
+  # Limit for user avatar image size in MB, default: 2 MB
+    avatarSizeLimit: 4
+rateLimits:
+  fileUploads:
+    ipMax: 100
+    # Rate limit window for file uploads per IP
+    ipWindowInMinutes: 60
+    userMax: 50
+    # Rate limit window for file uploads per user
+    userWindowInMinutes: 60
+registration:
+  socialLogins: ["google", "facebook", "github", "discord", "openid"]
+  allowedDomains:
+    - "upskillr.ai"
+    - "spjain.org"
+    - "spjain.ac.uk"
+endpoints:
+  assistants:
+    # Disable Assistants Builder Interface by setting to `true`
+    disableBuilder: false
+    # Polling interval for checking assistant updates
+    pollIntervalMs: 750
+    # Timeout for assistant operations
+    timeoutMs: 180000
+    # Should only be one or the other, either `supportedIds` or `excludedIds`
+    #supportedIds: ["asst_supportedAssistantId1", "asst_supportedAssistantId2"]
+    excludedIds: ["asst"]
+    # (optional) Models that support retrieval, will default to latest known OpenAI models that support the feature
+    # retrievalModels: ["gpt-4-turbo-preview"]
+    # (optional) Assistant Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
+    # capabilities: ["code_interpreter", "retrieval", "actions", "tools", "image_vision"]
+  custom:
+    - name: "groq"
+      apiKey: "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"
+      baseURL: "https://api.groq.com/openai/v1/"
+      models:
+        default: [
+          "llama3-70b-8192",
+          "llama3-8b-8192",
+          "llama2-70b-4096",
+          "mixtral-8x7b-32768",
+          "gemma-7b-it",
+          ]
+        fetch: false
+      titleConvo: true
+      titleModel: "mixtral-8x7b-32768"
+      modelDisplayLabel: "groq"
+    - name: "OpenRouter"
+      apiKey: "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"
+      baseURL: "https://openrouter.ai/api/v1"
+        models:                                                                                                                   
+            default: ["openai/gpt-4o","openai/gpt-4-turbo-2024-04-09","mistralai/mistral-7b-instruct:free", "nousresearch/nous-capybara-7b:free", "gryphe/mythomist-7b:free", "undi95/toppy-m-7b:free", "openrouter/cinematika-7b:free", "google/gemma-7b-it:free", "jebcarter/psyfighter-13b", "koboldai/psyfighter-13b-2", "intel/neural-chat-7b", "haotian-liu/llava-13b", "nousresearch/nous-hermes-2-vision-7b", "meta-llama/llama-2-13b-chat", "migtissera/synthia-70b", "pygmalionai/mythalion-13b", "xwin-lm/xwin-lm-70b", "alpindale/goliath-120b", "neversleep/noromaid-20b", "gryphe/mythomist-7b", "sophosympatheia/midnight-rose-70b", "undi95/remm-slerp-l2-13b:extended", "mancer/weaver", "nousresearch/nous-hermes-llama2-13b", "nousresearch/nous-capybara-7b", "meta-llama/codellama-34b-instruct", "codellama/codellama-70b-instruct", "phind/phind-codellama-34b", "teknium/openhermes-2-mistral-7b", "teknium/openhermes-2.5-mistral-7b", "undi95/remm-slerp-l2-13b", "openrouter/cinematika-7b", "01-ai/yi-34b-chat", "01-ai/yi-34b", "01-ai/yi-6b", "togethercomputer/stripedhyena-nous-7b", "togethercomputer/stripedhyena-hessian-7b", "mistralai/mixtral-8x7b", "nousresearch/nous-hermes-yi-34b", "nousresearch/nous-hermes-2-mixtral-8x7b-sft", "nousresearch/nous-hermes-2-mistral-7b-dpo", "open-orca/mistral-7b-openorca", "huggingfaceh4/zephyr-7b-beta", "openai/gpt-3.5-turbo", "openai/gpt-3.5-turbo-0125", "openai/gpt-3.5-turbo-1106", "openai/gpt-3.5-turbo-0613", "openai/gpt-3.5-turbo-0301", "openai/gpt-3.5-turbo-16k", "openai/gpt-4-turbo", "openai/gpt-4-turbo-preview", "openai/gpt-4-1106-preview", "openai/gpt-4", "openai/gpt-4-0314", "openai/gpt-4-32k", "openai/gpt-4-32k-0314", "openai/gpt-4-vision-preview", "openai/gpt-3.5-turbo-instruct", "google/palm-2-chat-bison", "google/palm-2-codechat-bison", "google/palm-2-chat-bison-32k", "google/palm-2-codechat-bison-32k", "google/gemini-pro", "google/gemini-pro-vision", "google/gemini-pro-1.5", "perplexity/pplx-70b-online", "perplexity/pplx-7b-online", "perplexity/pplx-7b-chat", "perplexity/pplx-70b-chat", "perplexity/sonar-small-chat", "perplexity/sonar-medium-chat", "perplexity/sonar-small-online", "perplexity/sonar-medium-online", "fireworks/mixtral-8x22b-instruct-preview", "anthropic/claude-3-opus", "anthropic/claude-13b", "anthropic/claude-70b", "anthropic/claude-70b-instruct", "anthropic/claude-70b-vision", "anthropic/claude-130b", "anthropic/claude-130b-instruct", "anthropic/claude-130b-vision", "anthropic/claude-130b-opus", "anthropic/claude-175b", "anthropic/claude-175b-instruct", "anthropic/claude-175b-vision", "anthropic/claude-350b", "anthropic/claude-350b-instruct", "anthropic/claude-350b-vision", "anthropic/claude-700b", "anthropic/claude-700b-instruct", "anthropic/claude-700b-vision", "anthropic/claude-700b-opus", "anthropic/claude-1t", "anthropic/claude-1t-instruct", "anthropic/claude-1t-vision", "anthropic/claude-1t-opus", "anthropic/claude-3t", "anthropic/claude-3t-instruct", "anthropic/claude-3t-vision", "anthropic/claude-3t-opus"]
+              fetch: false
+      titleConvo: true
+      titleModel: "mistralai/mistral-7b-instruct:free"
+      modelDisplayLabel: "OpenRouter"
+      dropParams:
+        - "stop"
+        - "frequency_penalty"
